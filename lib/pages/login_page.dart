@@ -32,8 +32,13 @@ class _LoginPageState extends State<LoginPage> {
                         const EdgeInsets.only(top: 20, left: 40, right: 40),
                     child: Image.asset("img/login_screen_image.png"),
                   ),
-                  AppLargeText(text: "Login",color: Theme.of(context).colorScheme.tertiary),
-                  AppText(text: "Enter your account here",color: Theme.of(context).colorScheme.onSurface,),
+                  AppLargeText(
+                      text: "Login",
+                      color: Theme.of(context).colorScheme.tertiary),
+                  AppText(
+                    text: "Enter your account here",
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                   SizedBox(
                     height: 40,
                   ),
@@ -42,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       "User Name",
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface),
                     ),
                   ),
                   AppInput(onChange: (value) {
@@ -56,7 +62,8 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.topLeft,
                     child: Text(
                       "Password",
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface),
                     ),
                   ),
                   AppInput(
@@ -81,7 +88,6 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  
                 ],
               )),
         ),

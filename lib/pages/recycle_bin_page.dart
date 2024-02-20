@@ -8,7 +8,9 @@ class RecycleBinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: AppText(text: 'bookmarks',),
+        child: AppText(
+          text: 'bookmarks',
+        ),
       ),
     );
   }

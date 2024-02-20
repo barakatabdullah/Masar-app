@@ -40,8 +40,7 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
           }
           if (state is LessonState) {
             return LessonPage();
-          }
-          else {
+          } else {
             return Container();
           }
         },

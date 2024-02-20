@@ -40,7 +40,8 @@ class AppCubits extends Cubit<CubitStates> {
   Future<void> course({required id}) async {
     final db = await openMyDatabase();
     try {
-      var lessons = await db.rawQuery('SELECT * FROM LESSONS WHERE courseId = ?',[id]);
+      var lessons =
+          await db.rawQuery('SELECT * FROM LESSONS WHERE courseId = ?', [id]);
       emit(CourseState(lessons: lessons));
     } catch (e) {
       print(e);
@@ -50,7 +51,8 @@ class AppCubits extends Cubit<CubitStates> {
   Future<void> lesson({required id}) async {
     final db = await openMyDatabase();
     try {
-      var lesson = await db.rawQuery('SELECT * FROM LESSONS WHERE id = ?',[id]);
+      var lesson =
+          await db.rawQuery('SELECT * FROM LESSONS WHERE id = ?', [id]);
       emit(LessonState(lesson: lesson));
     } catch (e) {
       print(e);
@@ -58,11 +60,10 @@ class AppCubits extends Cubit<CubitStates> {
   }
 
   Future<void> home() async {
-
     try {
       emit(LoadingState());
       final db = await openMyDatabase();
-      courses =await db.rawQuery('SELECT * FROM COURSES');
+      courses = await db.rawQuery('SELECT * FROM COURSES');
       emit(LoadedState(courses: courses));
     } catch (e) {
       print(e);
@@ -81,7 +82,7 @@ class AppCubits extends Cubit<CubitStates> {
         emit(AuthState());
       } else if (user[0]['password'] == password) {
         try {
-          courses =await db.rawQuery('SELECT * FROM COURSES');
+          courses = await db.rawQuery('SELECT * FROM COURSES');
           emit(LoadedState(courses: courses));
         } catch (e) {
           print(e);
@@ -91,8 +92,6 @@ class AppCubits extends Cubit<CubitStates> {
       print(e);
     }
   }
-
-
 
   // Future<void> getData() async {
   //   try {
