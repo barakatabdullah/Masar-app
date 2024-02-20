@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          BlocProvider.of<AppCubits>(context).course();
+                          BlocProvider.of<AppCubits>(context).course(id: courses.courses?[index]['id']);
                         },
                         child: Stack(
                           children: [

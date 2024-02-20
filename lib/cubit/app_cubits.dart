@@ -37,9 +37,21 @@ class AppCubits extends Cubit<CubitStates> {
     }
   }
 
-  Future<void> course() async {
+  Future<void> course({required id}) async {
+    final db = await openMyDatabase();
     try {
-      emit(CourseState());
+      var lessons = await db.rawQuery('SELECT * FROM LESSONS WHERE courseId = ?',[id]);
+      emit(CourseState(lessons: lessons));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> lesson({required id}) async {
+    final db = await openMyDatabase();
+    try {
+      var lesson = await db.rawQuery('SELECT * FROM LESSONS WHERE id = ?',[id]);
+      emit(LessonState(lesson: lesson));
     } catch (e) {
       print(e);
     }

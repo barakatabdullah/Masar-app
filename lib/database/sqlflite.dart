@@ -62,7 +62,8 @@ Future<Database> openMyDatabase() async {
       await db.insert("LESSONS",
       {
         'title':'introduction ( Ecommerce App ) (PHP - MYSQL - Flutter) ( 2023 )',
-        'videoId':'vpEwyk4bJoY'
+        'videoId':'vpEwyk4bJoY',
+        'courseId':1
       }
       );
 
