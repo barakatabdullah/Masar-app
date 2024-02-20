@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cubit/cubit/app_cubits.dart';
 import 'package:flutter_cubit/widgets/app_large_text.dart';
 import 'package:flutter_cubit/widgets/app_text.dart';
 
@@ -19,7 +21,9 @@ class AppDrawer extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.withOpacity(0.5)),
+                      image: DecorationImage(
+                          image: AssetImage("img/my_photo.jpg"),
+                          fit: BoxFit.cover)),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -39,11 +43,58 @@ class AppDrawer extends StatelessWidget {
               ],
             )),
         ListTile(
-          title: AppText(
-            text: 'Bookmarks',
+          title:Row(
+            children: [
+              Icon(Icons.bookmark_outline),
+              SizedBox(
+                width: 3,
+              ),
+              AppText(
+                text: 'Bookmarks',
+              ),
+            ],
           ),
-          onTap: () {},
-        )
+          onTap: () {
+            BlocProvider.of<AppCubits>(context).bookmark();
+          },
+        ),
+        ListTile(
+
+          title: Row(
+            children: [
+              Icon(Icons.delete_outline),
+              SizedBox(
+                width: 3,
+              ),
+              AppText(
+                text: 'Recycle Bin',
+              ),
+            ],
+          ),
+
+          onTap: () {
+            BlocProvider.of<AppCubits>(context).recycle();
+          },
+        ),
+        Expanded(child: Container()),
+        ListTile(
+
+          title: Row(
+            children: [
+              Icon(Icons.logout_outlined),
+              SizedBox(
+                width: 3,
+              ),
+              AppText(
+                text: 'Log Out',
+              ),
+            ],
+          ),
+
+          onTap: () {
+            BlocProvider.of<AppCubits>(context).logout();
+          },
+        ),
       ],
     );
   }

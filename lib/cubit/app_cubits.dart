@@ -93,6 +93,28 @@ class AppCubits extends Cubit<CubitStates> {
     }
   }
 
+  Future<void> bookmark() async {
+    try {
+      emit(BookmarksState());
+    } catch (e) {
+      print(e);
+    }
+  }
+  Future<void> recycle() async {
+    try {
+      emit(RecycleBinState());
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      emit(AuthState());
+    } catch (e) {
+      print(e);
+    }
+  }
   // Future<void> getData() async {
   //   try {
   //     emit(LoadingState());
