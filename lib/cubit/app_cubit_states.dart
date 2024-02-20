@@ -51,3 +51,15 @@ class LessonState extends CubitStates {
   // TODO: implement props
   List<Object?> get props => [lesson];
 }
+
+class BookmarksState extends CubitStates {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
+
+class RecycleBinState extends CubitStates {
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}
