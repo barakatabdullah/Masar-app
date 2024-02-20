@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit/cubit/app_cubit_states.dart';
 import 'package:flutter_cubit/cubit/app_cubits.dart';
+import 'package:flutter_cubit/widgets/app_drawer.dart';
 import 'package:flutter_cubit/widgets/app_large_text.dart';
 import 'package:flutter_cubit/widgets/app_text.dart';
 
@@ -28,44 +29,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       return Scaffold(
         key: scaffoldKey,
         drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                  child: Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.5)),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppLargeText(
-                        text: 'Abdullah Barakat',
-                        color: Theme.of(context).colorScheme.secondary,
-                        size: 16,
-                      ),
-                      AppText(
-                        text: 'Student',
-                        textAlign: TextAlign.start,
-                      )
-                    ],
-                  ),
-                ],
-              )),
-              ListTile(
-                title: AppText(
-                  text: 'Bookmarks',
-                ),
-                onTap: () {},
-              )
-            ],
-          ),
+          child: AppDrawer(),
         ),
         body: Container(
           height: double.maxFinite,
@@ -222,28 +186,4 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   }
 }
 
-class CircleTabIndicator extends Decoration {
-  final Color color;
-  double radius;
-  CircleTabIndicator({required this.color, required this.radius});
-  @override
-  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-    return _CirclePainter(color: color, radius: radius);
-  }
-}
 
-class _CirclePainter extends BoxPainter {
-  final Color color;
-  double radius;
-  _CirclePainter({required this.color, required this.radius});
-  @override
-  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
-    Paint _paint = Paint();
-    _paint.color = color;
-    _paint.isAntiAlias = true;
-    final Offset circleOffset = Offset(
-        configuration.size!.width / 2 - radius / 2,
-        configuration.size!.height - radius / 2 - radius);
-    canvas.drawCircle(offset + circleOffset, radius, _paint);
-  }
-}
