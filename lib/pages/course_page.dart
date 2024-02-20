@@ -24,10 +24,15 @@ class CoursePage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 50, left: 20),
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.menu,
-                        size: 30,
-                        color: Colors.black54,
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: 30,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ), onPressed: () {
+                        BlocProvider.of<AppCubits>(context).home();
+                      },
+
                       ),
                       Expanded(child: Container()),
                       Container(

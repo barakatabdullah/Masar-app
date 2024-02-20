@@ -22,10 +22,46 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   };
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
     TabController _tabController = TabController(length: 3, vsync: this);
     return BlocBuilder<AppCubits,CubitStates>(builder: (context,state){
       LoadedState courses = state as LoadedState;
       return Scaffold(
+        key: scaffoldKey,
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  child:Row(
+
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.withOpacity(0.5)),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppLargeText(text: 'Abdullah Barakat',color: Theme.of(context).colorScheme.secondary,size: 16,),
+                          AppText(text: 'Student',textAlign: TextAlign.start,)
+                        ],
+                      ),
+                      ListTile(
+                        title: AppText(text: 'Bookmarks',),
+                        onTap: (){},
+                      )
+                    ],
+                  )
+
+              )
+            ],
+          ),
+        ),
         body: Container(
           height: double.maxFinite,
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -34,10 +70,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               padding: const EdgeInsets.only(top: 50, left: 20),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.menu,
-                    size: 30,
-                    color: Colors.black54,
+                  IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      size: 30,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ), onPressed: () {
+                      scaffoldKey.currentState?.openDrawer();
+                  },
+
                   ),
                   Expanded(child: Container()),
                   Container(
@@ -68,7 +109,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: TabBarView(controller: _tabController, children: [
                   ListView.builder(
                     itemCount: courses.courses?.length,
-                    // scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
