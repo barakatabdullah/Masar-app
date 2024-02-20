@@ -7,9 +7,14 @@ class BookmarksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: AppText(
-          text: 'bookmarks',
+      body: SafeArea(
+        child: Center(
+          child: Container(
+            child: AppText(
+              text: 'bookmarks',
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
         ),
       ),
     );

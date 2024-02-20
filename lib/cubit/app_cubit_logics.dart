@@ -10,14 +10,9 @@ import 'package:flutter_cubit/pages/login_page.dart';
 import 'package:flutter_cubit/pages/recycle_bin_page.dart';
 import 'package:flutter_cubit/pages/welcome_page.dart';
 
-class AppCubitLogics extends StatefulWidget {
+class AppCubitLogics extends StatelessWidget {
   const AppCubitLogics({super.key});
 
-  @override
-  State<AppCubitLogics> createState() => _AppCubitLogicsState();
-}
-
-class _AppCubitLogicsState extends State<AppCubitLogics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

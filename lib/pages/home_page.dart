@@ -14,12 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  var images = {
-    'balloning.png': "Balloning",
-    "hiking.png": "Hiking",
-    "kayaking.png": "kayaking",
-    "snorkling.png": "Snorkling"
-  };
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
