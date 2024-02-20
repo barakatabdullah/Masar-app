@@ -81,19 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      BlocProvider.of<ThemeCubit>(context)
-                          .toggleMode();
-                    },
-                    child: AppButton(
-                      width: double.maxFinite,
-                      child: AppText(
-                        text: "toggle",
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
+                  
                 ],
               )),
         ),
