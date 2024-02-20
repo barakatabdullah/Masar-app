@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit/cubit/app_cubit_states.dart';
 import 'package:flutter_cubit/cubit/app_cubits.dart';
-import 'package:flutter_cubit/misc/colors.dart';
 import 'package:flutter_cubit/widgets/app_large_text.dart';
 import 'package:flutter_cubit/widgets/app_text.dart';
 
@@ -22,9 +21,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   };
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey=new GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
     TabController _tabController = TabController(length: 3, vsync: this);
-    return BlocBuilder<AppCubits,CubitStates>(builder: (context,state){
+    return BlocBuilder<AppCubits, CubitStates>(builder: (context, state) {
       LoadedState courses = state as LoadedState;
       return Scaffold(
         key: scaffoldKey,
@@ -32,39 +31,46 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: ListView(
             children: [
               DrawerHeader(
-                  child:Row(
-
+                  child: Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 20),
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.withOpacity(0.5)),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.withOpacity(0.5)),
+                      AppLargeText(
+                        text: 'Abdullah Barakat',
+                        color: Theme.of(context).colorScheme.secondary,
+                        size: 16,
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppLargeText(text: 'Abdullah Barakat',color: Theme.of(context).colorScheme.secondary,size: 16,),
-                          AppText(text: 'Student',textAlign: TextAlign.start,)
-                        ],
-                      ),
-                      ListTile(
-                        title: AppText(text: 'Bookmarks',),
-                        onTap: (){},
+                      AppText(
+                        text: 'Student',
+                        textAlign: TextAlign.start,
                       )
                     ],
-                  )
-
+                  ),
+                ],
+              )),
+              ListTile(
+                title: AppText(
+                  text: 'Bookmarks',
+                ),
+                onTap: () {},
               )
             ],
           ),
         ),
         body: Container(
           height: double.maxFinite,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             //menu text
             Container(
               padding: const EdgeInsets.only(top: 50, left: 20),
@@ -75,20 +81,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Icons.menu,
                       size: 30,
                       color: Theme.of(context).colorScheme.onSurface,
-                    ), onPressed: () {
+                    ),
+                    onPressed: () {
                       scaffoldKey.currentState?.openDrawer();
-                  },
-
+                    },
                   ),
                   Expanded(child: Container()),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.5)),
-                  )
+
+                     BlocBuilder<ThemeCubit, bool>(
+                      builder: (BuildContext context, state) {
+                        return IconButton(
+                          onPressed: () {
+                            BlocProvider.of<ThemeCubit>(context).toggleMode();
+                          },
+                          icon: state
+                              ? Icon(Icons.dark_mode_outlined)
+                              : Icon(Icons.light_mode_outlined),
+                        );
+                      },
+
+                  ),
                 ],
               ),
             ),
@@ -97,13 +109,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             Container(
                 margin: const EdgeInsets.only(left: 20),
-                child: AppLargeText(text: "Discover",color: Theme.of(context).colorScheme.secondary,)),
+                child: AppLargeText(
+                  text: "Discover",
+                  color: Theme.of(context).colorScheme.secondary,
+                )),
             SizedBox(
               height: 30,
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.only(left: 20,bottom: 10),
+                padding: const EdgeInsets.only(left: 20, bottom: 10),
                 height: double.maxFinite,
                 width: double.maxFinite,
                 child: TabBarView(controller: _tabController, children: [
@@ -112,26 +127,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          BlocProvider.of<AppCubits>(context).course(id: courses.courses?[index]['id']);
+                          BlocProvider.of<AppCubits>(context)
+                              .course(id: courses.courses?[index]['id']);
                         },
                         child: Stack(
                           children: [
-                            Positioned(child: Container(
-                              margin: const EdgeInsets.only(right: 15, top: 10),
-                              width: double.maxFinite,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                  image: DecorationImage(
-                                      image: AssetImage("img/"+courses.courses?[index]["image"]),
-                                      fit: BoxFit.cover)),
-                            ),),
                             Positioned(
-              
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.only(right: 15, top: 10),
+                                width: double.maxFinite,
+                                height: 200,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                        image: AssetImage("img/" +
+                                            courses.courses?[index]["image"]),
+                                        fit: BoxFit.cover)),
+                              ),
+                            ),
+                            Positioned(
                                 child: Container(
-                                  child: Text("Hello"),
-                                ))
+                              child: Text("Hello"),
+                            ))
                           ],
                         ),
                       );
