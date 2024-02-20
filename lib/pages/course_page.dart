@@ -33,15 +33,7 @@ class CoursePage extends StatelessWidget {
                       BlocProvider.of<AppCubits>(context).home();
                     },
                   ),
-                  Expanded(child: Container()),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.5)),
-                  )
+
                 ],
               ),
             ),
