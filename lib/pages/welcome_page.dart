@@ -23,20 +23,21 @@ class _WelcomePageState extends State<WelcomePage> {
 
   List welcoming = [
     {
-      "title":"Unleash your potential!",
-      "description":"Explore customized learning roadmaps designed to guide you toward your tech dreams, right in your pocket."
+      "title": "Unleash your potential!",
+      "description":
+          "Explore customized learning roadmaps designed to guide you toward your tech dreams, right in your pocket."
     },
     {
-      "title":"Level up your skills with confidence",
-      "description":"Curated paths, expert insights, and interactive challenges pave the way to your tech mastery."
+      "title": "Level up your skills with confidence",
+      "description":
+          "Curated paths, expert insights, and interactive challenges pave the way to your tech mastery."
     },
     {
-      "title":"Wander no more!",
-      "description":"start conquering. This is your personalized journey to becoming a tech powerhouse. Dive in and unlock your future! "
+      "title": "Wander no more!",
+      "description":
+          "start conquering. This is your personalized journey to becoming a tech powerhouse. Dive in and unlock your future! "
     },
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +68,18 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      AppLargeText(text: welcoming[index]["title"],size: 25,color: AppColors.mainColor,),
+                      AppLargeText(
+                        text: welcoming[index]["title"],
+                        size: 25,
+                        color: AppColors.mainColor,
+                      ),
                       SizedBox(
                         height: 20,
                       ),
                       Container(
                         width: 250,
                         child: AppText(
-                          text:
-                              welcoming[index]["description"],
+                          text: welcoming[index]["description"],
                           color: AppColors.textColor2,
                           size: 14,
                           textAlign: TextAlign.center,

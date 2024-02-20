@@ -37,12 +37,28 @@ class LoadedState extends CubitStates {
 }
 
 class CourseState extends CubitStates {
+  List? lessons;
+  CourseState({this.lessons});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [lessons];
+}
+
+class LessonState extends CubitStates {
+  List? lesson;
+  LessonState({this.lesson});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [lesson];
+}
+
+class BookmarksState extends CubitStates {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
-class LessonState extends CubitStates {
+class RecycleBinState extends CubitStates {
   @override
   // TODO: implement props
   List<Object?> get props => throw UnimplementedError();

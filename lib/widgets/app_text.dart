@@ -7,14 +7,12 @@ class AppText extends StatelessWidget {
   Color color;
   TextAlign textAlign;
 
-
   AppText(
       {super.key,
       required this.text,
       this.color = AppColors.textColor2,
       this.size = 16,
-      this.textAlign = TextAlign.left
-      });
+      this.textAlign = TextAlign.left});
 
   @override
   Widget build(BuildContext context) {

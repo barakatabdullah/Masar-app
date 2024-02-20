@@ -12,8 +12,7 @@ class AppLargeText extends StatelessWidget {
       required this.text,
       this.color = AppColors.textColor1,
       this.size = 30,
-      this.textAlign =TextAlign.center
-      });
+      this.textAlign = TextAlign.center});
 
   @override
   Widget build(BuildContext context) {

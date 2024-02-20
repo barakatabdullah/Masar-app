@@ -37,13 +37,39 @@ class AppCubits extends Cubit<CubitStates> {
     }
   }
 
-  Future<void> course() async {
+  Future<void> course({required id}) async {
+    final db = await openMyDatabase();
     try {
-      emit(CourseState());
+      var lessons =
+          await db.rawQuery('SELECT * FROM LESSONS WHERE courseId = ?', [id]);
+      emit(CourseState(lessons: lessons));
     } catch (e) {
       print(e);
     }
   }
+
+  Future<void> lesson({required id}) async {
+    final db = await openMyDatabase();
+    try {
+      var lesson =
+          await db.rawQuery('SELECT * FROM LESSONS WHERE id = ?', [id]);
+      emit(LessonState(lesson: lesson));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> home() async {
+    try {
+      emit(LoadingState());
+      final db = await openMyDatabase();
+      courses = await db.rawQuery('SELECT * FROM COURSES');
+      emit(LoadedState(courses: courses));
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<void> onlogin({required username, required password}) async {
     emit(LoadingState());
     final db = await openMyDatabase();
@@ -56,9 +82,7 @@ class AppCubits extends Cubit<CubitStates> {
         emit(AuthState());
       } else if (user[0]['password'] == password) {
         try {
-          // places = await data?.getInfo();
-          // print(places.length);
-          courses =await db.rawQuery('SELECT * FROM COURSES');
+          courses = await db.rawQuery('SELECT * FROM COURSES');
           emit(LoadedState(courses: courses));
         } catch (e) {
           print(e);
@@ -69,20 +93,20 @@ class AppCubits extends Cubit<CubitStates> {
     }
   }
 
-  Future<void> getData() async {
-    try {
-      emit(LoadingState());
-      // places = await data?.getInfo();
-      // print(places.length);
-      emit(LoadedState());
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Future<void> getData() async {
+  //   try {
+  //     emit(LoadingState());
+  //     // places = await data?.getInfo();
+  //     // print(places.length);
+  //     emit(LoadedState());
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }
 
 class ThemeCubit extends Cubit<bool> {
-  ThemeCubit() : super(true);
+  ThemeCubit() : super(false);
 
   void toggleMode() => emit(!state);
   void setMode(bool mode) => emit(mode);

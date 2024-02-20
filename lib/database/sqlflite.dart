@@ -38,34 +38,32 @@ Future<Database> openMyDatabase() async {
         {'username': 'user123', 'password': '12345678'},
       );
 
-      await db.insert("COURSES",
+      await db.insert(
+        "COURSES",
         {
-          'id':1,
-          'title':'Flutter - MVC E-commerce course',
-          'image':'flutterImg.jpg'
+          'id': 1,
+          'title': 'Flutter - MVC E-commerce course',
+          'image': 'flutterImg.jpg'
         },
       );
-      await db.insert("COURSES",
+      await db.insert(
+        "COURSES",
+        {'id': 2, 'title': 'Vue.js Fundamentals', 'image': 'vueImg.jpg'},
+      );
+      await db.insert(
+        "COURSES",
         {
-          'id':2,
-          'title':'Vue.js Fundamentals',
-          'image':'vueImg.jpg'
+          'id': 3,
+          'title': 'Photoshop for Beginners:Complete Course',
+          'image': 'photoshopImg.jpg'
         },
       );
-      await db.insert("COURSES",
-        {
-          'id':3,
-          'title':'Photoshop for Beginners:Complete Course',
-          'image':'photoshopImg.jpg'
-        },
-      );
-      await db.insert("LESSONS",
-      {
-        'title':'introduction ( Ecommerce App ) (PHP - MYSQL - Flutter) ( 2023 )',
-        'videoId':'vpEwyk4bJoY'
-      }
-      );
-
+      await db.insert("LESSONS", {
+        'title':
+            'introduction ( Ecommerce App ) (PHP - MYSQL - Flutter) ( 2023 )',
+        'videoId': 'vpEwyk4bJoY',
+        'courseId': 1
+      });
     },
   );
   return database;
